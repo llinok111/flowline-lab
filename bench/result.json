@@ -1,0 +1,49 @@
+{
+  "generatedBy": "bench/bench.mjs",
+  "node": "v24.19.0",
+  "workload": {
+    "field": "jet(amp=25,width=0.15,drift=0.4)",
+    "seeds": 12,
+    "maxTime": 4,
+    "targetDeviation": 0.000001,
+    "adaptiveTol": 1e-7,
+    "innerReps": 3
+  },
+  "accuracy": {
+    "maxAdaptiveEndpointError": 8.715e-7,
+    "maxBaselineEndpointError": 9.994e-7
+  },
+  "work": {
+    "adaptiveEvals": 21816,
+    "adaptiveSteps": 1749,
+    "adaptiveRejected": 69,
+    "baselineEvals": 51632,
+    "baselineSteps": 12908,
+    "evalRatio": 2.37,
+    "evalsSavedPct": 57.7
+  },
+  "coldStartMs": 2.0672,
+  "timing": {
+    "adaptive": {
+      "samples": 7,
+      "min": 1.507,
+      "median": 1.5411,
+      "p95": 1.9508,
+      "max": 1.9508,
+      "mean": 1.6316,
+      "stddev": 0.1641,
+      "rsd": 0.1006
+    },
+    "baseline": {
+      "samples": 7,
+      "min": 3.4523,
+      "median": 3.6466,
+      "p95": 4.8491,
+      "max": 4.8491,
+      "mean": 3.8654,
+      "stddev": 0.4819,
+      "rsd": 0.1247
+    },
+    "speedupMedian": 2.37
+  }
+}

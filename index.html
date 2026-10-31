@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>flowline-lab — adaptive RK4 streamlines</title>
+<style>
+  :root { color-scheme: dark; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; background: #07090f; color: #e6ecff;
+    font: 13px/1.5 ui-monospace, SFMono-Regular, Menlo, monospace; overflow: hidden; }
+  #app { position: fixed; inset: 0; }
+  canvas { display: block; }
+  #hud { position: fixed; top: 16px; left: 16px; width: 310px; padding: 16px 18px;
+    background: rgba(12,17,28,.82); border: 1px solid rgba(120,160,255,.22);
+    border-radius: 12px; backdrop-filter: blur(8px); }
+  h1 { margin: 0 0 2px; font-size: 15px; letter-spacing: .04em; }
+  .sub { color: #7f8fb3; font-size: 11px; margin-bottom: 14px; }
+  label { display: flex; justify-content: space-between; color: #9fb0d6; margin: 10px 0 4px; }
+  input[type=range] { width: 100%; accent-color: #5ee0c0; }
+  #stats { margin-top: 14px; padding-top: 12px; border-top: 1px solid rgba(120,160,255,.16); }
+  .row { display: flex; justify-content: space-between; padding: 2px 0; }
+  .k { color: #7f8fb3; }
+  .v { color: #cfe3ff; }
+  .good { color: #5ee0c0; }
+  #badge { position: fixed; right: 16px; bottom: 16px; padding: 8px 12px; font-size: 11px;
+    color: #8fa3c8; border: 1px solid rgba(120,160,255,.18); border-radius: 8px;
+    background: rgba(12,17,28,.7); }
+  #err { color: #ff8a8a; }
+</style>
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+    "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+  }
+}
+</script>
+</head>
+<body>
+<div id="app"></div>
+<div id="hud">
+  <h1>flowline-lab</h1>
+  <div class="sub">自适应步长 RK4 流线 · 浏览器内与 node 同算法复算</div>
+  <label><span>流线数量</span><span id="nOut">24</span></label>
+  <input id="n" type="range" min="6" max="48" step="6" value="24" />
+  <label><span>局部容差 tol</span><span id="tOut">1e-7</span></label>
+  <input id="t" type="range" min="4" max="8" step="1" value="7" />
+  <div id="stats">
+    <div class="row"><span class="k">自适应步数</span><span class="v" id="steps">—</span></div>
+    <div class="row"><span class="k">场求值 (自适应)</span><span class="v" id="evals">—</span></div>
+    <div class="row"><span class="k">基线求值 (固定步)</span><span class="v" id="base">—</span></div>
+    <div class="row"><span class="k">节省</span><span class="v good" id="saved">—</span></div>
+    <div class="row"><span class="k">实测端点误差</span><span class="v" id="error">—</span></div>
+    <div class="row"><span class="k">目标误差</span><span class="v">1e-6</span></div>
+  </div>
+</div>
+<div id="badge">拖拽旋转 · 滚轮缩放 · 数字由本页实时计算</div>
+<script type="module" src="./main.js"></script>
+</body>
+</html>
